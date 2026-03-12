@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact</title>
+
+<title>Contact - Uncle Réparation</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -28,15 +32,25 @@
 
 <h2>Contact</h2>
 
-<p>📞 06 51 67 01 64</p>
+<p>
+Une panne informatique ? Un téléphone cassé ?  
+Contactez-moi directement par téléphone ou via le formulaire ci-dessous.
+</p>
+
+<p>
+📞 <a href="tel:+33651670164">06 51 67 01 64</a>
+</p>
 
 <form>
 
-<input type="text" placeholder="Votre nom">
+<label for="name">Votre nom</label>
+<input id="name" type="text" name="name" placeholder="Votre nom" required>
 
-<input type="email" placeholder="Votre email">
+<label for="email">Votre email</label>
+<input id="email" type="email" name="email" placeholder="Votre email" required>
 
-<textarea placeholder="Votre problème"></textarea>
+<label for="message">Votre problème</label>
+<textarea id="message" name="message" placeholder="Expliquez votre problème..." rows="5" required></textarea>
 
 <button type="submit">Envoyer</button>
 
@@ -45,7 +59,9 @@
 </section>
 
 <footer>
-<p>© 2026 Uncle Réparation</p>
+
+<p>© 2026 UNCLE RÉPARATION</p>
+
 </footer>
 
 <script src="script.js"></script>
