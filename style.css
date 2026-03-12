@@ -640,3 +640,188 @@ animation:cursorPulse 2s infinite;
 50%{opacity:0.5;}
 100%{opacity:0.2;}
 }
+/* ================================================= */
+/* FOND RESEAU INTERACTIF */
+/* ================================================= */
+
+body::before{
+background-image:
+linear-gradient(rgba(0,198,255,0.18) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,198,255,0.18) 1px, transparent 1px);
+animation:networkMove 20s linear infinite;
+}
+
+body:hover::before{
+filter:brightness(1.4);
+}
+
+/* ================================================= */
+/* CARTES 3D STYLE APPLE VISION PRO */
+/* ================================================= */
+
+.cards{
+perspective:1200px;
+}
+
+.card{
+transform-style:preserve-3d;
+transition:transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card:hover{
+transform:
+rotateX(10deg)
+rotateY(-10deg)
+translateY(-15px)
+scale(1.05);
+}
+
+/* ================================================= */
+/* EFFET HOLOGRAMME */
+/* ================================================= */
+
+.card::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(0,198,255,0.3),
+transparent
+);
+opacity:0;
+transition:0.5s;
+}
+
+.card:hover::after{
+opacity:1;
+}
+
+/* ================================================= */
+/* BOOT FUTURISTE */
+/* ================================================= */
+
+body.boot{
+animation:bootScreen 1.2s ease;
+}
+
+@keyframes bootScreen{
+
+0%{
+opacity:0;
+filter:blur(10px);
+}
+
+40%{
+opacity:0.6;
+filter:blur(3px);
+}
+
+100%{
+opacity:1;
+filter:blur(0);
+}
+
+}
+
+/* ================================================= */
+/* LUMIERE SOURIS AMELIOREE */
+/* ================================================= */
+
+.cursor::after{
+width:180px;
+height:180px;
+background:radial-gradient(
+circle,
+rgba(0,198,255,0.35),
+transparent 70%
+);
+}
+
+/* ================================================= */
+/* INTERFACE TECHNOLOGIQUE HUD */
+/* ================================================= */
+
+body::selection{
+background:#00c6ff;
+color:black;
+}
+
+/* scanline futuriste */
+
+body::after{
+animation:
+nodeMove 25s linear infinite,
+scanline 6s linear infinite;
+}
+
+@keyframes scanline{
+
+0%{opacity:0.2}
+50%{opacity:0.35}
+100%{opacity:0.2}
+
+}
+
+/* ================================================= */
+/* CHARGEMENT HIGH TECH (REMPLACE L'OCÉAN) */
+/* ================================================= */
+
+.water-transition{
+
+background:
+radial-gradient(circle at center, rgba(0,198,255,0.2), transparent 70%),
+linear-gradient(180deg,#0f2027,#02080f);
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.water-transition::before{
+
+content:"";
+width:80px;
+height:80px;
+border:4px solid rgba(0,198,255,0.2);
+border-top:4px solid #00c6ff;
+border-radius:50%;
+animation:techLoader 1s linear infinite;
+background:none;
+
+}
+
+.water-transition::after{
+
+content:"UNCLE REPARATION";
+position:absolute;
+bottom:40%;
+font-size:14px;
+letter-spacing:4px;
+color:#00c6ff;
+animation:pulseTech 2s infinite;
+
+}
+
+/* loader rotation */
+
+@keyframes techLoader{
+
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+
+}
+
+/* texte pulsation */
+
+@keyframes pulseTech{
+
+0%{opacity:0.4}
+50%{opacity:1}
+100%{opacity:0.4}
+
+}
