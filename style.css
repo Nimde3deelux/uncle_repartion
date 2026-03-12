@@ -1,79 +1,246 @@
-/* ===================== */
-/* AMELIORATIONS AVANCEES */
-/* (ajoutées sans suppression) */
-/* ===================== */
-
-/* lumière réseau interactive */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
 
 body{
-perspective:1000px;
+margin:0;
+color:white;
+text-align:center;
+overflow-x:hidden;
+min-height:100vh;
+line-height:1.6;
+background:#0f2027;
+position:relative;
 }
 
-body::selection{
-background:#00c6ff;
-color:#000;
-}
+/* ===================== */
+/* RESEAU INFORMATIQUE   */
+/* ===================== */
 
-/* halo dynamique qui suit la souris */
-
-body::marker{
-color:#00c6ff;
-}
-
-body::before,
-body::after{
-pointer-events:none;
-}
-
-/* halo interactif */
-
-.network-light{
+body::before{
+content:"";
 position:fixed;
-width:600px;
-height:600px;
-background:radial-gradient(circle, rgba(0,198,255,0.15), transparent 70%);
-pointer-events:none;
-transform:translate(-50%,-50%);
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+linear-gradient(rgba(0,198,255,0.15) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,198,255,0.15) 1px, transparent 1px);
+background-size:80px 80px;
+animation:networkMove 30s linear infinite;
+z-index:-2;
+}
+
+body::after{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 30%, rgba(0,198,255,0.2) 2px, transparent 2px),
+radial-gradient(circle at 70% 60%, rgba(0,198,255,0.2) 2px, transparent 2px),
+radial-gradient(circle at 40% 80%, rgba(0,198,255,0.2) 2px, transparent 2px);
+background-size:200px 200px;
+animation:nodeMove 25s linear infinite;
 z-index:-1;
-filter:blur(40px);
-animation:networkPulse 6s infinite alternate;
 }
 
-@keyframes networkPulse{
-from{opacity:0.3;}
-to{opacity:0.7;}
+@keyframes networkMove{
+from{transform:translateY(0);}
+to{transform:translateY(-80px);}
+}
+
+@keyframes nodeMove{
+from{transform:translateY(0);}
+to{transform:translateY(-200px);}
 }
 
 /* ===================== */
-/* CARTES 3D STYLE APPLE */
+/* GLITCH AU CHARGEMENT  */
 /* ===================== */
+
+@keyframes glitch{
+0%{text-shadow:2px 0 red,-2px 0 cyan;}
+20%{text-shadow:-2px 0 red,2px 0 cyan;}
+40%{text-shadow:2px 0 red,-2px 0 cyan;}
+60%{text-shadow:-2px 0 red,2px 0 cyan;}
+80%{text-shadow:2px 0 red,-2px 0 cyan;}
+100%{text-shadow:none;}
+}
+
+.hero h2{
+animation:fade 1s ease, glitch 0.8s linear;
+}
+
+/* ===================== */
+/* HEADER */
+/* ===================== */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(12px);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+header h1{
+font-size:22px;
+letter-spacing:1px;
+text-shadow:0 0 10px #00c6ff;
+}
+
+nav{
+display:flex;
+align-items:center;
+}
+
+nav a{
+color:white;
+margin-left:25px;
+text-decoration:none;
+font-weight:bold;
+font-size:15px;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#00c6ff;
+text-shadow:0 0 8px #00c6ff;
+}
+
+/* HAMBURGER */
+
+.menu-toggle{
+display:none;
+flex-direction:column;
+cursor:pointer;
+}
+
+.menu-toggle span{
+height:3px;
+width:25px;
+background:white;
+margin:4px 0;
+}
+
+/* ===================== */
+/* HERO */
+/* ===================== */
+
+.hero{
+height:70vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:rgba(0,0,0,0.35);
+padding:100px 20px;
+}
+
+.hero h2{
+font-size:42px;
+margin-bottom:20px;
+letter-spacing:1px;
+text-shadow:0 0 15px #00c6ff;
+}
+
+.hero button{
+padding:15px 35px;
+border:none;
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+color:white;
+font-size:18px;
+cursor:pointer;
+border-radius:12px;
+transition:0.3s;
+box-shadow:0 0 15px #00c6ff;
+}
+
+.hero button:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px #00c6ff;
+}
+
+/* ===================== */
+/* SECTIONS */
+/* ===================== */
+
+section{
+padding:80px 10%;
+text-align:center;
+}
+
+section h2{
+font-size:32px;
+margin-bottom:10px;
+text-shadow:0 0 10px #00c6ff;
+}
+
+/* ===================== */
+/* CARTES STYLE APPLE */
+/* ===================== */
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:35px;
+margin-top:40px;
+perspective:1200px;
+}
 
 .card{
+background:rgba(255,255,255,0.05);
+padding:35px;
+border-radius:20px;
+width:260px;
+transition:0.6s;
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 10px 35px rgba(0,0,0,0.5);
+position:relative;
+overflow:hidden;
+opacity:0;
+transform:translateY(60px);
+animation:cardAppear 1s forwards;
 transform-style:preserve-3d;
-transition:transform 0.6s, box-shadow 0.6s;
 }
 
 .card:hover{
 transform:
+translateY(-12px)
 rotateX(8deg)
 rotateY(-8deg)
-translateY(-12px)
 scale(1.05);
-box-shadow:
-0 10px 30px rgba(0,0,0,0.6),
-0 0 20px rgba(0,198,255,0.6),
-0 0 60px rgba(0,198,255,0.4);
 }
-
-/* profondeur interne */
 
 .card::after{
 content:"";
 position:absolute;
-inset:0;
-background:radial-gradient(circle at 30% 30%, rgba(0,198,255,0.2), transparent 60%);
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(0,198,255,0.4),
+transparent
+);
 opacity:0;
-transition:opacity 0.4s;
+transition:0.4s;
 }
 
 .card:hover::after{
@@ -81,153 +248,132 @@ opacity:1;
 }
 
 /* ===================== */
-/* EFFET HOLOGRAMME */
+/* HOLOGRAMME */
 /* ===================== */
 
-.hologram{
-position:relative;
-overflow:hidden;
-}
-
-.hologram::before{
+.card::before{
 content:"";
 position:absolute;
-width:200%;
-height:200%;
 top:-50%;
 left:-50%;
-background:linear-gradient(
-120deg,
+width:200%;
+height:200%;
+background:
+linear-gradient(
+45deg,
 transparent,
 rgba(0,198,255,0.2),
 transparent
 );
-animation:holoScan 6s linear infinite;
-}
-
-@keyframes holoScan{
-0%{transform:translateX(-100%) rotate(0deg);}
-100%{transform:translateX(100%) rotate(360deg);}
-}
-
-/* lignes holographiques */
-
-.hologram::after{
-content:"";
-position:absolute;
-inset:0;
-background:
-repeating-linear-gradient(
-0deg,
-rgba(0,198,255,0.08) 0px,
-rgba(0,198,255,0.08) 1px,
-transparent 2px,
-transparent 4px
-);
+animation:hologramMove 6s linear infinite;
 pointer-events:none;
+}
+
+@keyframes hologramMove{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }
 
 /* ===================== */
 /* BOOT TECHNOLOGIQUE */
 /* ===================== */
 
-.boot-screen{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#02070b;
-z-index:10000;
-display:flex;
-align-items:center;
-justify-content:center;
-flex-direction:column;
-font-family:monospace;
-color:#00c6ff;
-animation:bootFade 3.5s forwards;
+body.booting::before{
+animation:bootGrid 2s ease;
 }
 
-.boot-text{
+@keyframes bootGrid{
+0%{
 opacity:0;
-animation:bootText 2s forwards;
+transform:scale(1.2);
 }
-
-@keyframes bootText{
-0%{opacity:0; transform:translateY(10px);}
-100%{opacity:1; transform:translateY(0);}
-}
-
-@keyframes bootFade{
-0%{opacity:1;}
-80%{opacity:1;}
 100%{
-opacity:0;
-visibility:hidden;
+opacity:1;
+transform:scale(1);
 }
-}
-
-/* scan lines */
-
-.boot-screen::after{
-content:"";
-position:absolute;
-inset:0;
-background:
-repeating-linear-gradient(
-0deg,
-rgba(0,198,255,0.05),
-rgba(0,198,255,0.05) 1px,
-transparent 2px,
-transparent 4px
-);
-pointer-events:none;
 }
 
 /* ===================== */
-/* PARALLAX LEGER */
+/* SCAN FUTURISTE */
 /* ===================== */
 
-.hero{
-transform-style:preserve-3d;
+body::selection{
+background:#00c6ff;
+color:black;
 }
 
-.hero h2{
-transform:translateZ(30px);
+body::after{
+animation:
+nodeMove 25s linear infinite,
+scanline 6s linear infinite;
 }
 
-.hero button{
-transform:translateZ(20px);
-}
-
-/* ===================== */
-/* GLOW GLOBAL TECH */
-/* ===================== */
-
-section h2{
-text-shadow:
-0 0 10px #00c6ff,
-0 0 20px rgba(0,198,255,0.7),
-0 0 40px rgba(0,198,255,0.4);
+@keyframes scanline{
+0%{opacity:0.2}
+50%{opacity:0.35}
+100%{opacity:0.2}
 }
 
 /* ===================== */
-/* OPTIMISATION MOBILE */
+/* MOBILE */
 /* ===================== */
 
 @media(max-width:900px){
 
-.card:hover{
-transform:translateY(-10px) scale(1.03);
+header{
+flex-direction:row;
+justify-content:space-between;
 }
 
-.network-light{
-width:300px;
-height:300px;
+nav{
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:rgba(0,0,0,0.95);
+flex-direction:column;
+display:none;
+padding:20px 0;
 }
 
-.boot-text{
-font-size:14px;
+nav a{
+margin:15px 0;
+font-size:18px;
+}
+
+nav.active{
+display:flex;
+}
+
+.menu-toggle{
+display:flex;
+}
+
+.hero{
+height:auto;
+padding:80px 20px;
+}
+
+.hero h2{
+font-size:30px;
+}
+
+.cards{
+flex-direction:column;
+align-items:center;
+}
+
+.card{
+width:90%;
+max-width:320px;
+}
+
+section{
+padding:60px 20px;
+}
+
+form{
+width:90%;
 }
 
 }
