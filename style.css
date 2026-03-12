@@ -198,7 +198,6 @@ flex-wrap:wrap;
 justify-content:center;
 gap:35px;
 margin-top:40px;
-perspective:1200px;
 }
 
 .card{
@@ -215,103 +214,207 @@ overflow:hidden;
 opacity:0;
 transform:translateY(60px);
 animation:cardAppear 1s forwards;
-transform-style:preserve-3d;
 }
 
-.card:hover{
-transform:
-translateY(-12px)
-rotateX(8deg)
-rotateY(-8deg)
-scale(1.05);
-}
+.card:nth-child(2){animation-delay:0.2s;}
+.card:nth-child(3){animation-delay:0.4s;}
+.card:nth-child(4){animation-delay:0.6s;}
 
-.card::after{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(
-120deg,
-transparent,
-rgba(0,198,255,0.4),
-transparent
-);
-opacity:0;
-transition:0.4s;
-}
-
-.card:hover::after{
+@keyframes cardAppear{
+to{
 opacity:1;
+transform:translateY(0);
 }
-
-/* ===================== */
-/* HOLOGRAMME */
-/* ===================== */
+}
 
 .card::before{
 content:"";
 position:absolute;
-top:-50%;
-left:-50%;
-width:200%;
-height:200%;
-background:
-linear-gradient(
-45deg,
-transparent,
-rgba(0,198,255,0.2),
-transparent
-);
-animation:hologramMove 6s linear infinite;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(0,198,255,0.5),transparent);
+transition:0.5s;
+}
+
+.card:hover::before{
+left:100%;
+}
+
+.card:hover{
+transform:translateY(-12px) scale(1.03);
+box-shadow:
+0 0 10px #00c6ff,
+0 0 25px #00c6ff,
+0 0 45px rgba(0,198,255,0.6);
+}
+
+/* ===================== */
+/* CONTACT */
+/* ===================== */
+
+form{
+display:flex;
+flex-direction:column;
+gap:12px;
+max-width:420px;
+margin:auto;
+margin-top:30px;
+}
+
+input, textarea{
+padding:14px;
+border:none;
+border-radius:8px;
+font-size:14px;
+outline:none;
+background:rgba(255,255,255,0.9);
+color:#222;
+}
+
+textarea{
+resize:none;
+min-height:120px;
+}
+
+form button{
+background:linear-gradient(45deg,#00c6ff,#0072ff);
+color:white;
+border:none;
+padding:14px;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+transition:0.3s;
+box-shadow:0 0 15px #00c6ff;
+}
+
+form button:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px #00c6ff;
+}
+
+/* ===================== */
+/* FOOTER */
+/* ===================== */
+
+footer{
+text-align:center;
+padding:25px;
+background:#000;
+margin-top:60px;
+font-size:14px;
+opacity:0.9;
+}
+
+/* ===================== */
+/* CURSEUR LUMIERE */
+/* ===================== */
+
+.cursor{
+width:20px;
+height:20px;
+border:2px solid #00c6ff;
+border-radius:50%;
+position:fixed;
 pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:999;
+box-shadow:0 0 20px #00c6ff;
 }
 
-@keyframes hologramMove{
-0%{transform:rotate(0deg);}
-100%{transform:rotate(360deg);}
+.cursor::after{
+content:"";
+position:absolute;
+width:120px;
+height:120px;
+background:radial-gradient(circle, rgba(0,198,255,0.25) 0%, transparent 70%);
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+border-radius:50%;
 }
 
 /* ===================== */
-/* BOOT TECHNOLOGIQUE */
+/* EAU AMELIOREE */
 /* ===================== */
 
-body.booting::before{
-animation:bootGrid 2s ease;
+.water-transition{
+position:fixed;
+bottom:-100%;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(
+180deg,
+rgba(0,198,255,0.6),
+rgba(0,114,255,0.7)
+);
+backdrop-filter:blur(6px);
+z-index:9999;
+transition:bottom 0.9s ease;
+overflow:hidden;
 }
 
-@keyframes bootGrid{
-0%{
+.water-transition.active{
+bottom:0;
+}
+
+/* bulles */
+
+.water-transition::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 80%, rgba(255,255,255,0.6) 3px, transparent 4px),
+radial-gradient(circle at 60% 60%, rgba(255,255,255,0.5) 4px, transparent 5px),
+radial-gradient(circle at 80% 90%, rgba(255,255,255,0.5) 3px, transparent 4px);
+background-size:200px 200px;
+animation:bubbles 10s linear infinite;
+opacity:0.5;
+}
+
+@keyframes bubbles{
+from{transform:translateY(100%);}
+to{transform:translateY(-120%);}
+}
+
+/* requin silhouette */
+
+.water-transition::after{
+content:"";
+position:absolute;
+width:140px;
+height:50px;
+background:rgba(0,0,0,0.3);
+border-radius:50%;
+top:60%;
+left:-150px;
+animation:shark 10s linear infinite;
+}
+
+@keyframes shark{
+from{left:-150px; transform:translateY(0);}
+50%{transform:translateY(-20px);}
+to{left:110%; transform:translateY(0);}
+}
+
+/* ===================== */
+/* ANIMATION */
+/* ===================== */
+
+@keyframes fade{
+from{
 opacity:0;
-transform:scale(1.2);
+transform:translateY(25px);
 }
-100%{
+to{
 opacity:1;
-transform:scale(1);
+transform:translateY(0);
 }
-}
-
-/* ===================== */
-/* SCAN FUTURISTE */
-/* ===================== */
-
-body::selection{
-background:#00c6ff;
-color:black;
-}
-
-body::after{
-animation:
-nodeMove 25s linear infinite,
-scanline 6s linear infinite;
-}
-
-@keyframes scanline{
-0%{opacity:0.2}
-50%{opacity:0.35}
-100%{opacity:0.2}
 }
 
 /* ===================== */
