@@ -480,3 +480,163 @@ width:90%;
 }
 
 }
+/* ================================================= */
+/* AJOUTS AVANCES - INTERFACE FUTURISTE TECH         */
+/* ================================================= */
+
+/* ===================== */
+/* BOOT TECHNOLOGIQUE */
+/* ===================== */
+
+body.boot-sequence::before{
+animation:bootNetwork 2s ease-out;
+}
+
+@keyframes bootNetwork{
+0%{
+opacity:0;
+transform:scale(1.2);
+}
+100%{
+opacity:1;
+transform:scale(1);
+}
+}
+
+/* ===================== */
+/* SCAN HUD TECHNOLOGIQUE */
+/* ===================== */
+
+body::selection{
+background:#00c6ff;
+color:black;
+}
+
+body::after{
+animation:
+nodeMove 25s linear infinite,
+hudScan 6s linear infinite;
+}
+
+@keyframes hudScan{
+0%{opacity:0.25;}
+50%{opacity:0.45;}
+100%{opacity:0.25;}
+}
+
+/* ===================== */
+/* LUMIERE INTERACTIVE */
+/* ===================== */
+
+body::marker{
+color:#00c6ff;
+}
+
+/* halo dynamique simulé */
+
+body::before{
+box-shadow:
+0 0 200px rgba(0,198,255,0.15) inset,
+0 0 120px rgba(0,198,255,0.1) inset;
+}
+
+/* ===================== */
+/* CARTES 3D STYLE APPLE */
+/* ===================== */
+
+.cards{
+perspective:1200px;
+}
+
+.card{
+transform-style:preserve-3d;
+}
+
+.card:hover{
+transform:
+translateY(-12px)
+rotateX(8deg)
+rotateY(-8deg)
+scale(1.06);
+}
+
+/* ===================== */
+/* HOLOGRAMME */
+/* ===================== */
+
+.card::after{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:
+linear-gradient(
+45deg,
+transparent,
+rgba(0,198,255,0.25),
+transparent
+);
+animation:hologramRotate 8s linear infinite;
+pointer-events:none;
+opacity:0.4;
+}
+
+@keyframes hologramRotate{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+/* ===================== */
+/* GLOW TECHNOLOGIQUE */
+/* ===================== */
+
+.card:hover{
+box-shadow:
+0 0 10px #00c6ff,
+0 0 25px #00c6ff,
+0 0 45px rgba(0,198,255,0.7),
+0 0 80px rgba(0,198,255,0.3);
+}
+
+/* ===================== */
+/* INTERFACE HUD */
+/* ===================== */
+
+.hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+repeating-linear-gradient(
+to bottom,
+transparent,
+transparent 2px,
+rgba(0,198,255,0.05) 3px
+);
+pointer-events:none;
+}
+
+/* ===================== */
+/* CURSEUR AMELIORE */
+/* ===================== */
+
+.cursor{
+transition:
+transform 0.08s ease,
+box-shadow 0.3s ease;
+}
+
+.cursor::after{
+animation:cursorPulse 2s infinite;
+}
+
+@keyframes cursorPulse{
+0%{opacity:0.2;}
+50%{opacity:0.5;}
+100%{opacity:0.2;}
+}
